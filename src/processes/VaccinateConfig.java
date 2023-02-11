@@ -9,8 +9,7 @@ import java.util.Iterator;
 public class VaccinateConfig {
     ArrayList<Patient> patients = new ArrayList<Patient>();
     ArrayList<Vaccine> vaccines = new ArrayList<Vaccine>();
-    Iterator<Patient> ip = this.patients.iterator();
-    Iterator<Vaccine> iv = this.vaccines.iterator();
+
 
     public VaccinateConfig() {
         this.patients = new ArrayList<>();
@@ -22,6 +21,7 @@ public class VaccinateConfig {
     }
 
     public void showPatients () {
+        Iterator<Patient> ip = this.patients.iterator();
         while(ip.hasNext()) {
             Patient patient = ip.next();
             System.out.println(patient.toString());
@@ -33,6 +33,7 @@ public class VaccinateConfig {
     }
 
     public void showVaccines () {
+        Iterator<Vaccine> iv = this.vaccines.iterator();
 
         while (iv.hasNext()) {
             Vaccine vaccine = iv.next();
@@ -40,23 +41,32 @@ public class VaccinateConfig {
         }
     }
     public boolean patientExist(String nroDoc) {
+        Iterator<Patient> ip = this.patients.iterator();
         boolean on = false;
         while(ip.hasNext()) {
             if(ip.next().getnDoc().equals(nroDoc)) {
                 on = true;
+                break;
             }
         }
         return on;
     }
     public void deletePatient(String nroDoc) {
 
-        if(patientExist(nroDoc)) {
+        if (patientExist(nroDoc)) {
             Patient p = new Patient();
-            
-            patients.remove(p);
+            for (Patient patient : patients) {
+                if (patient.getnDoc().equals(nroDoc))
+                    p = patient;
+            }
+            int indexPatient = this.patients.indexOf(p);
+            this.patients.remove(indexPatient);
         }
+        /*else
+            System.out.println("Patient not exist");*/
+    }
 
-        }
+
 
     }
-  /*  public void deleteVaccione() { };*/
+  /*  public void deleteVaccine() { };*/

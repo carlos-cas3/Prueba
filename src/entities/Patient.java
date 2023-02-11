@@ -13,9 +13,7 @@ public class Patient extends Person {
         return getAge() >= 18;
     }
 
-    public void showSpecificPatient() {
 
-    }
 
     @Override
     public String toString() {
