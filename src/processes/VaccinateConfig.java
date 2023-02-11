@@ -9,6 +9,8 @@ import java.util.Iterator;
 public class VaccinateConfig {
     ArrayList<Patient> patients = new ArrayList<Patient>();
     ArrayList<Vaccine> vaccines = new ArrayList<Vaccine>();
+    Iterator<Patient> ip = this.patients.iterator();
+    Iterator<Vaccine> iv = this.vaccines.iterator();
 
     public VaccinateConfig() {
         this.patients = new ArrayList<>();
@@ -20,9 +22,8 @@ public class VaccinateConfig {
     }
 
     public void showPatients () {
-        Iterator<Patient> p = this.patients.iterator();
-        while(p.hasNext()) {
-            Patient patient = p.next();
+        while(ip.hasNext()) {
+            Patient patient = ip.next();
             System.out.println(patient.toString());
         }
     }
@@ -32,10 +33,30 @@ public class VaccinateConfig {
     }
 
     public void showVaccines () {
-        Iterator<Vaccine> v = this.vaccines.iterator();
-        while (v.hasNext()) {
-            Vaccine vaccine = v.next();
+
+        while (iv.hasNext()) {
+            Vaccine vaccine = iv.next();
             System.out.println(vaccine.toString());
         }
     }
-}
+    public boolean patientExist(String nroDoc) {
+        boolean on = false;
+        while(ip.hasNext()) {
+            if(ip.next().getnDoc().equals(nroDoc)) {
+                on = true;
+            }
+        }
+        return on;
+    }
+    public void deletePatient(String nroDoc) {
+
+        if(patientExist(nroDoc)) {
+            Patient p = new Patient();
+            
+            patients.remove(p);
+        }
+
+        }
+
+    }
+  /*  public void deleteVaccione() { };*/
