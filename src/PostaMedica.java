@@ -16,17 +16,25 @@ public class PostaMedica {
         configVaccinate.createPatient(new Patient("Jesus","Flores",123,"DNI","23","p2134",new ArrayList<Vaccine>()));
         configVaccinate.createPatient(new Patient("Fernando","Martinez",123,"DNI","34","p3214",new ArrayList<Vaccine>()));
 
+        // public Vaccine(String name, String kit, String lot)
 
-        Vaccine v = new Vaccine();
+        Vaccine v1 = new Vaccine("Pfizer","12","012");
+        Vaccine v2 = new Vaccine("Moderna","23","023");
+        Vaccine v3 = new Vaccine("Astrazeneca","45","045");
+        Vaccine v4 = new Vaccine("Moderna","78","078");
+        Vaccine v5 = new Vaccine("Pfizer","91","091");
         //configVaccinate.vaccineForPatient(v);
-        configVaccinate.allVaccinesForSpecificPatient("12");
-        /*Patient p = new Patient("Carlos", "Castillo", 123, "DNI", "12", "p1234", new ArrayList<Vaccine>());
-        Vaccine v2 = new Vaccine();
 
-        p.vaccineForPatient(v);
-        p.vaccineForPatient(v2);
-        configVaccinate.createPatient(p);
-        configVaccinate.showPatients();*/
+
+        configVaccinate.vaccineForPatient("12",v1);
+        configVaccinate.vaccineForPatient("12",v2);
+        configVaccinate.allVaccinesForSpecificPatient("12");
+
+        System.out.println();
+        configVaccinate.vaccineForPatient("23",v1);
+        configVaccinate.allVaccinesForSpecificPatient("23");
+
+
         //INTERACCION
 
 

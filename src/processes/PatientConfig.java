@@ -32,6 +32,7 @@ public class PatientConfig {
     //ARREGLAR DE COMO VER A CUAL PACIENTE SE LE AÑADE UNA VACUNA
     public void vaccineForPatient(String nroDoc, Vaccine vaccine) {
         if(patientExist(nroDoc)) {
+            getSpecificPatient(nroDoc).setVaccinesPatient(vaccine);
            // getSpecificPatient(nroDoc).setVaccinesPatient(vaccine);
         }
     }

@@ -33,8 +33,8 @@ public class Patient extends Person {
         return vaccinesPatient;
     }
 
-    public void setVaccinesPatient(ArrayList<Vaccine> vaccinesPatient) {
-        this.vaccinesPatient = vaccinesPatient;
+    public void setVaccinesPatient(Vaccine vaccine) {
+        this.vaccinesPatient.add(vaccine);
     }
 
     public boolean majorityAge() {
