@@ -2,39 +2,33 @@ package src;
 
 import src.entities.Patient;
 import src.entities.Vaccine;
-import src.processes.VaccinateConfig;
+import src.processes.PatientConfig;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class PostaMedica {
     public static void main(String[] args) {
-        VaccinateConfig configPatient = new VaccinateConfig();
+        PatientConfig configVaccinate = new PatientConfig();
 
-        //CREATION PATIENTS
-        configPatient.createPatient(new Patient("Carlos","Castillo",123,"DNI","12","p1234"));
-        configPatient.createPatient(new Patient("Jesus","Flores",123,"DNI","23","p2134"));
-        configPatient.createPatient(new Patient("Fernando","Martinez",123,"DNI","34","p3214"));
-        //CREATION VACCINES
-        configPatient.createVaccine(new Vaccine("Pfizer","123","1"));
-        configPatient.createVaccine(new Vaccine("Moderna","213","2"));
-        configPatient.createVaccine(new Vaccine("Astrazeneca","323","3"));
 
-        configPatient.showPatients();
+        //CREATION PATIENTS with vaccines
+        configVaccinate.createPatient(new Patient("Carlos","Castillo",123,"DNI","12","p1234", new ArrayList<Vaccine>()));
+        configVaccinate.createPatient(new Patient("Jesus","Flores",123,"DNI","23","p2134",new ArrayList<Vaccine>()));
+        configVaccinate.createPatient(new Patient("Fernando","Martinez",123,"DNI","34","p3214",new ArrayList<Vaccine>()));
 
-        System.out.println();
 
-        configPatient.deletePatient("12");
-        configPatient.showPatients();
+        Vaccine v = new Vaccine();
+        //configVaccinate.vaccineForPatient(v);
+        configVaccinate.allVaccinesForSpecificPatient("12");
+        /*Patient p = new Patient("Carlos", "Castillo", 123, "DNI", "12", "p1234", new ArrayList<Vaccine>());
+        Vaccine v2 = new Vaccine();
 
-        System.out.println();
-
-        configPatient.deletePatient("56");
-
-        System.out.println();
-        configPatient.showPatients();
-
+        p.vaccineForPatient(v);
+        p.vaccineForPatient(v2);
+        configVaccinate.createPatient(p);
+        configVaccinate.showPatients();*/
         //INTERACCION
+
 
 
     }

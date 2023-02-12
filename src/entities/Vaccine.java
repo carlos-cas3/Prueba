@@ -36,6 +36,8 @@ public class Vaccine {
         this.lot = lot;
     }
 
+
+
     @Override
     public String toString() {
         return "Vaccine {" +
