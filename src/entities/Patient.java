@@ -9,6 +9,8 @@ public class Patient extends Person {
     private String codPatient;
     private ArrayList<Vaccine> vaccinesPatient;
 
+
+
     public Patient() { }
 
     public Patient(String name, String lastname, int age, String typeDoc, String nDoc, String codPatient, ArrayList<Vaccine> vaccinesPatient) {
@@ -36,6 +38,9 @@ public class Patient extends Person {
     public void setVaccinesPatient(Vaccine vaccine) {
         this.vaccinesPatient.add(vaccine);
     }
+
+
+
 
     public boolean majorityAge() {
         return getAge() >= 18;

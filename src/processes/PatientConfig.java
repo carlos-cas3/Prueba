@@ -8,44 +8,22 @@ import java.util.Iterator;
 
 public class PatientConfig {
     ArrayList<Patient> patients = new ArrayList<Patient>();
-    ArrayList<Vaccine> vaccinesPatient = new ArrayList<Vaccine>();
 
     public PatientConfig() {
         this.patients = new ArrayList<>();
-        this.vaccinesPatient = new ArrayList<>();
     }
 
     public void createPatient (Patient patient) {
         this.patients.add(patient);
     }
 
-    public void showPatients () {
-        Iterator<Patient> ip = this.patients.iterator();
-        while(ip.hasNext()) {
-            Patient patient = ip.next();
+    public void showAllPatients () {
+        for (Patient patient : this.patients) {
             System.out.println(patient.toString());
         }
     }
 
-
-
-    //ARREGLAR DE COMO VER A CUAL PACIENTE SE LE AÑADE UNA VACUNA
-    public void vaccineForPatient(String nroDoc, Vaccine vaccine) {
-        if(patientExist(nroDoc)) {
-            getSpecificPatient(nroDoc).setVaccinesPatient(vaccine);
-           // getSpecificPatient(nroDoc).setVaccinesPatient(vaccine);
-        }
-    }
-
-    /*public void showVaccines () {
-        Iterator<Vaccine> iv = this.vaccines.iterator();
-
-        while (iv.hasNext()) {
-            Vaccine vaccine = iv.next();
-            System.out.println(vaccine.toString());
-        }
-    }*/
-    public boolean patientExist(String nroDoc) {
+    public boolean specificPatientExist(String nroDoc) {
         Iterator<Patient> ip = this.patients.iterator();
         boolean on = false;
         while(ip.hasNext()) {
@@ -67,18 +45,55 @@ public class PatientConfig {
         }
         return p;
     }
-    public void deletePatient(String nroDoc) {
-        if (patientExist(nroDoc)) {
+    public void deleteSpecificPatient(String nroDoc) {
+        if (specificPatientExist(nroDoc)) {
             int indexPatient = this.patients.indexOf(getSpecificPatient(nroDoc));
             this.patients.remove(indexPatient);
         }
     }
+    //ARREGLAR DE COMO VER A CUAL PACIENTE SE LE AÑADE UNA VACUNA
+    //ERROR IF VACCINE BE USE IN ONE PATIENT, THEN ANOTHER PATIENT NO USE THE SAME VACCINE
+    public void vaccineForPatient(String nroDoc, Vaccine vaccine) {
+        if(specificPatientExist(nroDoc)) {
+            getSpecificPatient(nroDoc).setVaccinesPatient(vaccine);
+            //elimino la vacuna y listo :u
+            getSpecificPatient(nroDoc);
+            // getSpecificPatient(nroDoc).setVaccinesPatient(vaccine);
+        }
+    }
+    public void elimantevaccineForSpecificPatient(String nroDoc,String kit) {
+        if(specificPatientExist(nroDoc)) {
+                getSpecificPatient(nroDoc).getVaccinesPatient().remove(specificVaccineForPatient(nroDoc,kit));
+        }
+    }
+    public Vaccine specificVaccineForPatient(String nroDoc, String kit) {
+        Vaccine v = new Vaccine();
+
+        if(specificPatientExist(nroDoc)) {
+            for(Vaccine vaccine : getSpecificPatient(nroDoc).getVaccinesPatient()) {
+                if(vaccine.getKit().equals(kit)) {
+                    v = vaccine;
+                    break;
+                }
+            }
+        }
+        return v;
+    }
     public void allVaccinesForSpecificPatient(String  nroDoc) {
-        if(patientExist(nroDoc)) {
+        if(specificPatientExist(nroDoc)) {
             System.out.println(getSpecificPatient(nroDoc).getVaccinesPatient().toString());
             }
-            }
+    }
 
+    //quieroque en este metodo se me permite crear un arraylist teniendo todas las vacunas
+    public void showAllVaccines() {
+        ArrayList<Vaccine> arrayVaccines = new ArrayList<>();
+        Iterator<Patient> ip = this.patients.iterator();
+        while(ip.hasNext()) {
+            System.out.println(ip.next().getVaccinesPatient());
+        }
+
+    }
 
 
 
